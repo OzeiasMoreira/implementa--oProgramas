@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
-int recursiva(const char *str, int start, int end) {
+int recursivaS(const char *str, int start, int end) {
     if (start >= end) return 1; 
     if (str[start] != str[end]) return 0; 
-    return recursiva(str, start + 1, end - 1);
+    return recursivaS(str, start + 1, end - 1);
 }
 
-int is_in_language_recursive(const char *str, int hash_index, int len) {
-    return recursiva(str, 0, hash_index - 1) &&
-           recursiva(str, hash_index + 1, len - 1);
+int recursiva(const char *str, int hash_index, int len) {
+    return recursivaS(str, 0, hash_index - 1) &&
+           recursivaS(str, hash_index + 1, len - 1);
 }
 
 int main() {
@@ -27,7 +27,7 @@ int main() {
     }
 
     if (hash_index == -1 || 
-        !is_in_language_recursive(input, hash_index, len)) {
+        !recursiva(input, hash_index, len)) {
         printf("A string não pertence ao conjunto L.\n");
     } else {
         printf("A string pertence ao conjunto L.\n");
